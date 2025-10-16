@@ -8,6 +8,10 @@ public class BaseCounter : MonoBehaviour, IKitchenObjecParent
     public virtual void Interact(Player newParent) {
         Debug.LogError("Call Interact fron baseCounter");
     }
+    public virtual void InteractAlternate(Player newParent)
+    {
+        Debug.LogError("Call InteractAlternate fron baseCounter");
+    }
     public Transform GetSpawnPointforKitchenObject()
     {
         return spawnPoint;

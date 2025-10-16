@@ -29,6 +29,22 @@ public class Player : MonoBehaviour,IKitchenObjecParent
     {
         anim = GetComponent<Animator>();
         gameInput.OnInteractAction += GameInput_OnInteractAction;
+        gameInput.OnInteractAlternateAction += GameInput_OnInteractAlternateAction;
+    }
+
+    private void GameInput_OnInteractAlternateAction(object sender, EventArgs e)
+    {
+        Vector2 inputVec = gameInput.GetInputVectorNormalized();
+        Vector3 moveDir = new Vector3(inputVec.x, 0, inputVec.y);
+        float interactDistance = 2f;
+        if(moveDir != Vector3.zero ) lastInteractDir = moveDir;
+        if (Physics.Raycast(transform.position, lastInteractDir, out RaycastHit hit, interactDistance, counterLayerMask)) ;
+        {
+            if (hit.transform.TryGetComponent(out BaseCounter counter))
+            {
+                counter.InteractAlternate(this);
+            }
+        }
     }
 
     private void GameInput_OnInteractAction(object sender, EventArgs e)
@@ -37,11 +53,11 @@ public class Player : MonoBehaviour,IKitchenObjecParent
         Vector3 moveDir = new Vector3(inputVec.x, 0, inputVec.y);
         float interactDistance = 2f;
         if (moveDir != Vector3.zero) lastInteractDir = moveDir;
-        Debug.DrawRay(transform.position, lastInteractDir * interactDistance, Color.red, 1.0f);
         if (Physics.Raycast(transform.position, lastInteractDir, out RaycastHit raycastHit, interactDistance, counterLayerMask))
         {
             if (raycastHit.transform.TryGetComponent(out BaseCounter counter)){
-                counter.Interact(this);
+                 counter.Interact(this); 
+                
             }
 
         }
@@ -61,7 +77,6 @@ public class Player : MonoBehaviour,IKitchenObjecParent
         Vector3 moveDir = new Vector3(inputVec.x, 0, inputVec.y);
         float interactDistance = 2f;
         if (moveDir != Vector3.zero) lastInteractDir = moveDir;
-        Debug.DrawRay(transform.position, lastInteractDir * interactDistance, Color.red, 1.0f);
         if (Physics.Raycast(transform.position, lastInteractDir, out RaycastHit raycastHit, interactDistance, counterLayerMask))
         {
             if (raycastHit.transform.TryGetComponent(out BaseCounter baseC))
@@ -93,26 +108,26 @@ public class Player : MonoBehaviour,IKitchenObjecParent
         float playerSize = 2f;
         float playerRadius = 0.7f;
         bool canMove = !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerSize, playerRadius, moveDir, movDistance);
-        if (canMove) transform.position += moveDir * movDistance;
         if (!canMove)
         {
-            moveDir = new Vector3(moveDir.x, 0, 0).normalized;
-            canMove = !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerSize, playerRadius, moveDir, movDistance);
+            Vector3 moveDirX = new Vector3(moveDir.x, 0, 0).normalized;
+            canMove = moveDir.x!=0 && !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerSize, playerRadius, moveDirX, movDistance);
             if (canMove)
             {
-                transform.position += moveDir * movDistance;
+                moveDir = moveDirX;
             }
             else
             {
-                moveDir = new Vector3(0, 0, moveDir.z).normalized;
-                canMove = !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerSize, playerRadius, moveDir, movDistance);
+                Vector3 moveDirZ = new Vector3(0, 0, moveDir.z).normalized;
+                canMove = moveDir.z!=0 && !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerSize, playerRadius, moveDirZ, movDistance);
                 if (canMove)
                 {
-                    transform.position += moveDir * movDistance;
+                    moveDir = moveDirZ;
                 }
 
             }
         }
+        if(canMove) transform.position += moveDir * movDistance;
         float rotateSpeed = 5f;
         transform.forward = Vector3.Slerp(transform.forward, moveDir, rotateSpeed * Time.deltaTime);
         isWalking = moveDir != Vector3.zero;

@@ -13,17 +13,19 @@ public class KitchenObject : MonoBehaviour
     {
         return kitchenObjectSO;
     }
-    public void ClearParent()
-    {
-        parent = null;
-    }
     public void SetParent(IKitchenObjecParent parent)
     {
-        ClearParent();
+        if(this.parent != null) 
+        this.parent.ClearKitchenObjectParent();
         this.parent = parent;
+        parent.SetKitchenObjectForParent(this);
         transform.parent = this.parent.GetSpawnPointforKitchenObject();
         transform.localPosition = Vector3.zero;
-        Debug.Log(this.parent);
 
+    }
+    public void Destroyself()
+    {
+        this.parent.ClearKitchenObjectParent();
+        Destroy(this.gameObject);
     }
 }

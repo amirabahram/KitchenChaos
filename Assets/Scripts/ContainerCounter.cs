@@ -1,7 +1,10 @@
+using System;
 using UnityEngine;
 
 public class ContainerCounter : BaseCounter
 {
+    public event EventHandler OnPlayerOpenContainer;
+
     [SerializeField] private KitchenObjectSO so;
     private void Update()
     {
@@ -12,21 +15,24 @@ public class ContainerCounter : BaseCounter
             }
         }
     }
-    public override void Interact(Player newParent)
+    public override void Interact(Player player)
     {
-        if (kitchenObject == null)
+        if (player.GetCurrentKitchenObject() != null) return;
+        if (this.kitchenObject == null)
         {
-            Transform tom = Instantiate(so.prefab, spawnPoint);
-            tom.localPosition = Vector3.zero;
-            kitchenObject = tom.gameObject.GetComponent<KitchenObject>();
-            kitchenObject.SetParent(this);
+            Transform temp = Instantiate(so.prefab, spawnPoint);
+            temp.gameObject.GetComponent<KitchenObject>().SetParent(this);
         }
         else
         {
-            kitchenObject.SetParent(newParent);
+            this.kitchenObject.SetParent(player);
+            OnPlayerOpenContainer?.Invoke(this, EventArgs.Empty);
         }
-
-
     }
+     
+
+
+
+    
 
 }

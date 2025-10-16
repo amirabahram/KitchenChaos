@@ -82,7 +82,7 @@ MonoBehaviour:
   counterLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  grabPosition: {fileID: 1022254742936130090}
+  grabPosition: {fileID: 2886646240879293902}
 --- !u!1001 &3690215139415402640
 PrefabInstance:
   m_ObjectHideFlags: 0

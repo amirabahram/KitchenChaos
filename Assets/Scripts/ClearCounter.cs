@@ -12,18 +12,18 @@ public class ClearCounter : BaseCounter
             }
         }
     }
-    public override void Interact(Player newParent)
+    public override void Interact(Player player)
     {
-        if (kitchenObject==null)
+        if (player.GetCurrentKitchenObject() != null && this.kitchenObject == null)
         {
-            Transform tom = Instantiate(so.prefab, spawnPoint);
-            tom.localPosition = Vector3.zero;
-            kitchenObject = tom.gameObject.GetComponent<KitchenObject>();
             kitchenObject.SetParent(this);
+            Debug.Log("Counter Class Current Parent" + kitchenObject.GetParent());
+            return;
         }
-        else
+        if (this.kitchenObject!=null)
         {
-            kitchenObject.SetParent(newParent);
+            this.kitchenObject.SetParent(player);
+
         }
         
 
