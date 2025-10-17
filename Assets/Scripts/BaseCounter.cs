@@ -8,7 +8,7 @@ public class BaseCounter : MonoBehaviour, IKitchenObjecParent
     public virtual void Interact(Player newParent) {
         Debug.LogError("Call Interact fron baseCounter");
     }
-    public virtual void InteractAlternate(Player newParent)
+    public virtual void InteractAlternate()
     {
         Debug.LogError("Call InteractAlternate fron baseCounter");
     }

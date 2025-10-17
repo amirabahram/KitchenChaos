@@ -42,7 +42,7 @@ public class Player : MonoBehaviour,IKitchenObjecParent
         {
             if (hit.transform.TryGetComponent(out BaseCounter counter))
             {
-                counter.InteractAlternate(this);
+                counter.InteractAlternate();
             }
         }
     }

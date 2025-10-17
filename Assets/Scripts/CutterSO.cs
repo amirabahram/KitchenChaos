@@ -5,5 +5,6 @@ public class CutterSO : ScriptableObject
 {
     public KitchenObjectSO input;
     public KitchenObjectSO output;
+    public int maxCutNumber = 3; 
     
 }
