@@ -1,17 +1,17 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class CutterCounter : BaseCounter
+public class CutterCounter : BaseCounter,IHasProgressBar
 {
-    public event EventHandler<OnCutEventArgs> OnCut;
-    public class OnCutEventArgs : EventArgs
-    {
-        public float progressNormalized;
-    }
+
     int numOfCuts = 0;
     [SerializeField] private CutterSO[] CutterSO;
     private CutterSO currentCutterSO;
     private KitchenObjectSO cutKitchenObjectSo;
+
+    public event EventHandler<IHasProgressBar.OnActionEventArgs> OnActionHappen;
+
     public override void Interact(Player player)
     {
         if (player.GetCurrentKitchenObject() != null && this.kitchenObject == null)
@@ -38,7 +38,7 @@ public class CutterCounter : BaseCounter
             {
                 currentCutterSO = r;
                 numOfCuts++;
-                OnCut?.Invoke(this, new OnCutEventArgs
+                OnActionHappen?.Invoke(this, new IHasProgressBar.OnActionEventArgs
                 {
                     progressNormalized = numOfCuts / (float)currentCutterSO.maxCutNumber
                 });
@@ -60,5 +60,10 @@ public class CutterCounter : BaseCounter
     public CutterSO GetCurrentCutterSO()
     {
         return currentCutterSO;
+    }
+
+    public void progressValueChanged(float value)
+    {
+        throw new NotImplementedException();
     }
 }

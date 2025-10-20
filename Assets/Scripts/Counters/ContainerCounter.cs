@@ -20,8 +20,7 @@ public class ContainerCounter : BaseCounter
         if (player.GetCurrentKitchenObject() != null) return;
         if (this.kitchenObject == null)
         {
-            Transform temp = Instantiate(so.prefab, spawnPoint);
-            temp.gameObject.GetComponent<KitchenObject>().SetParent(this);
+            SpawnKitchenObjectFromSO(so);
         }
         else
         {

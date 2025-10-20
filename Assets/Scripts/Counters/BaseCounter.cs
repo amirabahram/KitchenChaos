@@ -28,4 +28,9 @@ public class BaseCounter : MonoBehaviour, IKitchenObjecParent
     {
         return kitchenObject;
     }
+    public void SpawnKitchenObjectFromSO(KitchenObjectSO so)
+    {
+        Transform temp = Instantiate(so.prefab, spawnPoint);
+        temp.gameObject.GetComponent<KitchenObject>().SetParent(this);
+    }
 }
