@@ -21,6 +21,20 @@ public class CutterCounter : BaseCounter,IHasProgressBar
             cutKitchenObjectSo = kitchenObject.GetKitchenObjectSO();
             return;
         }
+        if (player.GetCurrentKitchenObject() != null && this.kitchenObject != null)
+        {
+            if (player.GetCurrentKitchenObject() is Plate)
+            {
+                if (player.GetCurrentKitchenObject().TryGetPlateKitchenObject(out Plate plateKitchenObject))
+                {
+                    if (plateKitchenObject.TryAddddIngredient(player.GetCurrentKitchenObject().GetKitchenObjectSO()))
+                    {
+                        kitchenObject.Destroyself();
+                    }
+                }
+                return;
+            }
+        }
         if (this.kitchenObject != null)
         {
             this.kitchenObject.SetParent(player);

@@ -14,6 +14,21 @@ public class PlateCounter_Visual : MonoBehaviour
     {
         plates = new List<GameObject>();
         plateCounter.OnPlateSpawn += PlateCounter_OnPlateSpawn;
+        plateCounter.OnPlatePicked += PlateCounter_OnPlatePicked;
+    }
+
+    private void PlateCounter_OnPlatePicked(object sender, PlateCounter.OnPlatePickedEventArgs e)
+    {
+        GameObject temp = Instantiate(platePrefab.gameObject, e.player.GetSpawnPointforKitchenObject());
+        KitchenObject ko = temp.GetComponent<KitchenObject>();
+        ko.SetParent(e.player);
+        if (plates.Count > 0)
+        {
+            GameObject last = plates[plates.Count - 1];
+            plates.RemoveAt(plates.Count - 1);
+            Destroy(last);
+        }
+        
     }
 
     private void PlateCounter_OnPlateSpawn(object sender, EventArgs e)

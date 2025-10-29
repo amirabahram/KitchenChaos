@@ -5,6 +5,11 @@ using UnityEngine;
 public class PlateCounter : BaseCounter
 {
     public event EventHandler OnPlateSpawn;
+    public event EventHandler<OnPlatePickedEventArgs> OnPlatePicked;
+    public class OnPlatePickedEventArgs : EventArgs
+    {
+        public Player player;
+    }
     [SerializeField] KitchenObjectSO plate;
     [SerializeField] int spawnIntervals = 4;
     [SerializeField] int maximumPlates = 4;
@@ -18,7 +23,6 @@ public class PlateCounter : BaseCounter
 
     private void Update()
     {
-        timer += Time.time;
         timer += Time.deltaTime;
         if (timer > spawnIntervals)
         {
@@ -33,9 +37,6 @@ public class PlateCounter : BaseCounter
     }
     public override void Interact(Player newParent)
     {
-        if (newParent.GetCurrentKitchenObject() == null)
-        {
-            kitchenObject.SetParent(newParent);
-        }
+        OnPlatePicked?.Invoke(this, new OnPlatePickedEventArgs { player = newParent});
     }
 }

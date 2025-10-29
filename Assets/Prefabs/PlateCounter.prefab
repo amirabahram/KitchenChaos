@@ -143,6 +143,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93786890df2c35e408dd4b7002ca7809, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  plateCounter: {fileID: 7275826800107951099}
+  platePrefab: {fileID: 5786697718208253657, guid: bad6fbbafe31cfc41ab451bf01407750, type: 3}
+  spawnPoint: {fileID: 2083819793469309040}
 --- !u!4 &7748292157463973397 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4589716710238282923, guid: e21b499d164095947b7559f0267f0e63, type: 3}
@@ -243,3 +246,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 2083819793469309040}
   plate: {fileID: 11400000, guid: 351861a0521037f4593043bd4af9e130, type: 2}
+  spawnIntervals: 4
+  maximumPlates: 4
