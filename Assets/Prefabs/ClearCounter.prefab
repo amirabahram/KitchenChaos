@@ -81,7 +81,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66e1ac63f5c8ed14da660646bea9c589, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedCounter: {fileID: 0}
+  selectedCounter: {fileID: 5777071603526327152}
   highLightCounter:
   - {fileID: 6956805910203670517}
 --- !u!4 &3095522239075268625 stripped
@@ -246,7 +246,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 2936783216806339941}
-  so: {fileID: 0}
 --- !u!4 &2936783216806339941 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7052143050156198416, guid: 6f0a24f16d2e15d438b8cdbfdad350e5, type: 3}

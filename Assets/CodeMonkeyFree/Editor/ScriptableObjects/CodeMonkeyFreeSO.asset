@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentVersion: 1.01
   subtype: kitchenchaos
-  lastShownTimestamp: 1762151046
+  lastShownTimestamp: 1762666995
   lastUpdateResponse:
     version: 1.01
     versionUrl: https://unitycodemonkey.com
-  checkedLastUpdateTimestamp: 1762151046
+  checkedLastUpdateTimestamp: 1762666995
   lastQOTDResponse:
     questionId: 237
     questionText: 'What will be the value of isOne?
@@ -32,18 +32,18 @@ MonoBehaviour:
     answerC: 
     answerD: 
     answerE: 
-  lastQotdTimestamp: 1762151046
+  lastQotdTimestamp: 1762666995
   lastDynamicHeaderResponse:
     topImageUrl: https://codemonkeyexternal.blob.core.windows.net/external/Misc/gameDevReport_2.png
     topText: Stay up to date with the latest in Game Dev straight to your inbox!
     topLink: gamedevreport
     bottomText: My 10+ Years of C# Knowledge in 1 Course!
     bottomLink: csharpcourse
-  lastDynamicHeaderTimestamp: 1762151046
+  lastDynamicHeaderTimestamp: 1762666995
   websiteLatestMessage:
     text: <a href="https://cmonkey.co/freecourses">Check out all my FREE courses!
       Click here!</a>
-  websiteLatestMessageTimestamp: 1762151046
+  websiteLatestMessageTimestamp: 1762666995
   websiteLatestVideos:
     videos:
     - youTubeId: SFVSgORBgOg
@@ -54,4 +54,4 @@ MonoBehaviour:
       title: BEST NEW Visual Assets to INSPIRE YOU! (OCTOBER 2025)
     - youTubeId: qX5m_EH4Wbo
       title: How to FAIL with 100k WISHLISTS!
-  websiteLatestVideosTimestamp: 1762151046
+  websiteLatestVideosTimestamp: 1762666995

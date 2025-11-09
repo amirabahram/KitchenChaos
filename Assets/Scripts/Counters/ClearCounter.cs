@@ -4,12 +4,7 @@ public class ClearCounter : BaseCounter
 {
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            if (kitchenObject!=null)
-            {
-            }
-        }
+
     }
     public override void Interact(Player player)
     {

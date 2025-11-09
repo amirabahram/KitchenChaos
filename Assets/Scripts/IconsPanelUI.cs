@@ -32,7 +32,7 @@ public class IconsPanelUI : MonoBehaviour
             if (child == icon) continue;
             Destroy(child.gameObject);
         }
-        foreach(KitchenObjectSO so in plate.GetKitchenObjectSOList())
+        foreach(KitchenObjectSO so in plate.GetPlateIngredients())
         {
             Transform newIcon = Instantiate(icon, transform);
             newIcon.gameObject.SetActive(true);

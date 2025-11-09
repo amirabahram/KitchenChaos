@@ -417,6 +417,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CutterCounter
       objectReference: {fileID: 0}
+    - target: {fileID: 467237359105082157, guid: c93e9be62bf334c439656b5e567a9a2c, type: 3}
+      propertyPath: selectedCounter
+      value: 
+      objectReference: {fileID: 2442819364962423004}
     - target: {fileID: 2747274919568365406, guid: c93e9be62bf334c439656b5e567a9a2c, type: 3}
       propertyPath: CutterSO.Array.size
       value: 3
