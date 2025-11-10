@@ -1,9 +1,11 @@
 using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class DeliveryManager : MonoBehaviour
 {
+    public event EventHandler OnRecepieAddOrDelete;
     public static DeliveryManager Instance;
     [SerializeField] int maxNumOfOrder=4;
     [SerializeField] int orderInterval=4;
@@ -25,8 +27,9 @@ public class DeliveryManager : MonoBehaviour
 
         if (timer > orderInterval)
         {
-            RecepieSO recepie = recepieListSO.list[Random.Range(0, recepieListSO.list.Count)];
+            RecepieSO recepie = recepieListSO.list[UnityEngine.Random.Range(0, recepieListSO.list.Count)];
             orders.Add(recepie);
+            OnRecepieAddOrDelete?.Invoke(this,EventArgs.Empty);
             Debug.Log(recepie.name);
             timer = 0;
         }
@@ -46,6 +49,7 @@ public class DeliveryManager : MonoBehaviour
                 }
                 if (!ingredientFound) break;
                 orders.Remove(recepie);
+                OnRecepieAddOrDelete?.Invoke(this, EventArgs.Empty);
                 Debug.Log("Order Delivered!");
                 return true;
 
